@@ -6,14 +6,11 @@
 */
 void print_alphabet_x10(void)
 {
-char c, i;
-: wq
-for (i =  0; i < = 9; i++)
+int j;
+int x;
+for (x = 0; x < 10; x++)
 {
-for (c = 'a'; c < = 'z'; c++)
-{
-_putchar(c);
+_putchar (j);
 }
-_putchar('\n');
-}
+_putchar ('\n')
 }
