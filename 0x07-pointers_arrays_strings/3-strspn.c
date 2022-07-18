@@ -1,31 +1,28 @@
 #include "main.h"
 
 /**
- * _strspn - gets the length of a prefix substring
- * @s: string to be scanned
- * @accept: string containing characters to match
- * Return: number of matching characters in the initial segment
+ * _strspn - gets the length of the prefix substring
+ * @s: string where substring will look
+ * @accept: substring of accepred chars
+ * Return: length of occurance
  */
-
 unsigned int _strspn(char *s, char *accept)
 {
-int i, j, flag;
+unsigned int c = 0;
+char *t = accept;
 
-int count = 0;
-
-for (i = 0; s[i] != '\0'; i++)
+while (*s++)
 {
-flag = 0;
-for (j = 0; accept[j] != '\0'; j++)
+while (*accept++)
+if (*(s - 1) == *(accept - 1))
 {
-if (s[i] == accept[j])
-{
-count++;
-flag = 1;
+c++;
+break;
 }
-}
-if (flag == 0)
-return (count);
+if (!(*--accept))
+break;
+accept = t;
 }
 
-return (0);
+return (c);
+}
