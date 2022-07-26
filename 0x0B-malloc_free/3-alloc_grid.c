@@ -1,43 +1,34 @@
 #include "main.h"
-
+#include <stdlib.h>
 /**
- * alloc_grid - returns a pointer to a 2D array of integers
- * @width: width oàf array
+ * alloc_grid - a pointer to a 2 dimensional array of integers
+ * @width: width of array
  * @height: height of array
- * Return: pointer to the allocated grid
+ * Return: a pointer to a 2 dimensional array of integers
+ * NULL on failure, If width or height is 0 or negative, return NULL
  */
 int **alloc_grid(int width, int height)
 {
+int con1, con2;
 int **array;
-int i = 0, j;
-if (width == 0 || height == 0)
-return (NULL);
-array = (int **) malloc(sizeof(int *) * height);
-if (array != NULL)
-{
-for (; i < height; i++)
-{
-array[i] = (int *) malloc(sizeof(int) * width);
-if (array[i] != NULL)
-{
-for (j = 0; j < width; j++)
-array[i][j] = 0;
-}
-else
 
-while (i >= 0)
+if (height <= 0 || width <= 0)
+return (NULL);
+array = malloc(sizeof(int *) * height);
+if (array == 0)
+return (NULL);
+for (con1 = 0; con1 < height; con1++)
 {
-free(array[i]);
-i--;
-}
+array[con1] = malloc(sizeof(int) * width);
+if (array[con1] == 0)
+{
 free(array);
+for (con2 = 0; con2 <= con1; con2++)
+free(array[con2]);
 return (NULL);
 }
+for (con2 = 0; con2 < width; con2++)
+array[con1][con2] = 0;
 }
 return (array);
-}
-else
-{
-return (NULL);
-}
 }
